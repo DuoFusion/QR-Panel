@@ -1,0 +1,17 @@
+export const KEYS = {
+  SEND_PASSWORD_EMAIL: "forgot-password-request",
+  VERIFY_OTP: "verify-otp",
+  RESEND_OTP: "resend-otp",
+  RESET_PASSWORD: "reset-password",
+  USER: "user-details",
+  USER_UPDATE: "user-details-update",
+  PASSWORD_UPDATE: "password-update",
+  SETTINGS: "settings",
+  SETTINGS_UPDATE: "settings-update",
+  DELETE_USER: "delete-user",
+  UPDATE_USER_STATUS: "update-user-status",
+  ALL_USERS: "all-users",
+  ALL_TEAMS: "all-teams",
+  ALL_CHANNELS: "all-channels",
+  TEAM_MEMBERS: "team-members",
+} as const;
