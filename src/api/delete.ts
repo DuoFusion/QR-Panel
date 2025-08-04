@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { getToken } from "../utils";
 
-async function remove<T>(url: string): Promise<T> {
+async function Delete<T>(url: string): Promise<T> {
   const token = getToken();
   const config: AxiosRequestConfig = {
     method: "DELETE",
@@ -25,4 +25,4 @@ async function remove<T>(url: string): Promise<T> {
   }
 }
 
-export default remove;
+export default Delete;

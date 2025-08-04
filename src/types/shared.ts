@@ -1,5 +1,8 @@
 // ************ Svg's ***********
 
+import { ReactNode } from "react";
+import { InputProps } from "reactstrap";
+
 export interface SvgProps {
   iconId: string | undefined;
   className?: string;
@@ -23,4 +26,15 @@ export interface ImageProps {
   id?: string;
   title?: string;
   width?: number;
+}
+
+
+// ************ Form/Input Fields ***********
+
+export interface TextInputProps extends InputProps {
+  label?: string
+  name: string
+  iconProps?: SvgProps
+  children?: ReactNode
+  containerClass?: string
 }

@@ -2,7 +2,7 @@ import { InvalidateQueryFilters, QueryKey, useMutation, UseMutationOptions, useQ
 import { useNavigate } from "react-router-dom";
 import { HTTP_STATUS, ROUTES } from "../../constants";
 import { useAppDispatch } from "../../store/hooks";
-import { logout } from "../../store/slices/authSlice";
+import { logout } from "../../store/slices/AuthSlice";
 import type { CombinedErrorResponse } from "../../types";
 // import { errorMessage } from "../../utils/custom-functions";
 // import { toaster } from "../../utils/custom-functions";

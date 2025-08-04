@@ -1,32 +1,32 @@
-import axios, { AxiosRequestConfig, AxiosError } from 'axios'
-import { getToken } from '../utils'
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import { getToken } from "../utils";
 
-async function post<TInput, TResponse>(url: string, data?: TInput): Promise<TResponse> {
-  const authToken = getToken()
-  const isFormData = data instanceof FormData
+async function Post<TInput, TResponse>(url: string, data?: TInput): Promise<TResponse> {
+  const authToken = getToken();
+  const isFormData = data instanceof FormData;
 
   const config: AxiosRequestConfig = {
-    method: 'POST',
+    method: "POST",
     url,
     headers: {
       Authorization: `Bearer ${authToken}`,
-      ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
     },
     data,
-  }
+  };
 
   try {
-    const response = await axios(config)
-    return response.data as TResponse
+    const response = await axios(config);
+    return response.data as TResponse;
   } catch (error) {
-    const axiosError = error as AxiosError<any> // <--- set to `any` or a known error shape
+    const axiosError = error as AxiosError<any>; // <--- set to `any` or a known error shape
 
-    const responseData = axiosError.response?.data as { message?: string }
+    const responseData = axiosError.response?.data as { message?: string };
 
-    const message = responseData?.message || axiosError.message || 'Something went wrong'
+    const message = responseData?.message || axiosError.message || "Something went wrong";
 
-    throw new Error(message)
+    throw new Error(message);
   }
 }
 
-export default post
+export default Post;

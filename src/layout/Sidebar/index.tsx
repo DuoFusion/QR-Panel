@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { ImagePath, ROUTES } from "../../constants";
 import SvgIcon from "../../shared/icons/SvgIcon";
-import { toggleSidebar } from "../../store/slices/layoutSlice";
+import { toggleSidebar } from "../../store/slices/LayoutSlice";
 import { Image } from "../../shared/image";
 import SubMenu from "./SubMenu";
 import { useState } from "react";

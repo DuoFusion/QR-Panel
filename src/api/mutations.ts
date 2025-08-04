@@ -1,11 +1,10 @@
 import { KEYS, URL_KEYS } from "../constants";
 // import { AccountPayload, ResetPasswordPayload, SettingsPayload, UpdatePasswordPayload } from '../types'
-import remove from "./delete";
+import Delete from "./Delete";
 import { useApiDelete, useApiPost } from "./hooks";
-import post from "./post";
-import put from "./put";
+import Post from "./Post";
 
-const mutations = {
+const Mutations = {
   // useRequestForgotPassword: () => useApiPost<{ email: string }, void>([KEYS.SEND_PASSWORD_EMAIL], (input) => post(URL_KEYS.Auth.ForgotPassword, input)),
 
   // useVerifyOtp: () => useApiPost<{ email: string | null; otp: string }, void>([KEYS.VERIFY_OTP], (input) => post(URL_KEYS.Auth.VerifyOtp, input)),
@@ -21,4 +20,4 @@ const mutations = {
     // }),
 };
 
-export default mutations;
+export default Mutations;

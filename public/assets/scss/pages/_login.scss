@@ -68,18 +68,21 @@
         position: relative;
         background-color: #fff;
         padding: 10px 16px;
-        border: 1px dashed #dedbdb !important;
+        border: 1px dashed #dedbdb;
         width: 100%;
         border-radius: 4px;
         &:focus,
         &:focus-visible {
           outline: none !important;
         }
+        &.is-invalid {
+          border: 1px dashed $danger-text-color !important;
+        }
       }
       .show-hide {
         position: absolute;
-        top: 50%;
-        right: 20px;
+        top: 46px;
+        right: 25px;
         transform: translateY(-50%);
         span {
           cursor: pointer;

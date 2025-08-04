@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { getToken } from "../utils";
 import { Params } from "../types";
 
-async function get<T>(url: string, params?: Params,headers?: Record<string, string>): Promise<T> {
+async function Get<T>(url: string, params?: Params,headers?: Record<string, string>): Promise<T> {
   const token = getToken();
 
   const config: AxiosRequestConfig = {
@@ -27,4 +27,4 @@ async function get<T>(url: string, params?: Params,headers?: Record<string, stri
   }
 }
 
-export default get;
+export default Get;

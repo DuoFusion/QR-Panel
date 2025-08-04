@@ -1,9 +1,9 @@
 import React from "react";
-import { queries } from "../../api";
+// import { queries } from "../../api";
 
 const Dashboard = () => {
-  const { data, isLoading } = queries.useGetTeams();
-  console.log("data", data);
+  // const { data, isLoading } = queries.useGetTeams();
+  // console.log("data", data);
 
   return <div>Dashboard</div>;
 };

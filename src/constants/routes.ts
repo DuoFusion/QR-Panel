@@ -6,11 +6,4 @@ export const ROUTES = {
   CHANGE_PASSWORD: '/change-password',
   VERIFY_OTP: '/verify-otp',
   SET_NEW_PASSWORD: '/set-new-password',
-  PROFILE: '/profile',
-  MANAGE_SINGLE_USERS: '/manage-users/:id',
-  MANAGE_USERS: '/manage-users',
-  MANAGE_TEAM: '/manage-team',
-  MANAGE_CHANNELS: '/manage-channels',
-  MANAGE_TEAM_MEMBERS: '/manage-team/:teamId',
-  SETTING: '/setting',
 } as const

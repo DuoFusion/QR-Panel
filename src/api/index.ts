@@ -1,8 +1,7 @@
-import remove from "./delete";
-import get from "./get";
-import mutations from "./mutations";
-import post from "./post";
-import put from "./put";
-import queries from "./queries";
+import Delete from "./Delete";
+import Get from "./Get";
+import Mutations from "./Mutations";
+import Post from "./Post";
+import Queries from "./Queries";
 
-export { get, mutations, post, put, queries, remove };
+export { Get, Mutations, Post, Queries, Delete };

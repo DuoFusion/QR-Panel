@@ -1594,6 +1594,9 @@
       width: 100%;
       border-radius: 4px;
 
+      &.is-invalid{
+        border: 1px dashed variables.$danger-text-color !important;
+      }
       &.custom-checkbox:checked {
         background-color: #f2a93e;
       }

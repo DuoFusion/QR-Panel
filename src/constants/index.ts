@@ -1,8 +1,8 @@
-import { HTTP_STATUS } from './httpStatus'
-import { ROUTES } from './routes'
-import { STORAGE_KEYS } from './storageKeys'
-import { URL_KEYS } from './url'
-import { KEYS } from './keys'
+import { HTTP_STATUS } from './HttpStatus'
+import { ROUTES } from './Routes'
+import { STORAGE_KEYS } from './StorageKeys'
+import { URL_KEYS } from './Url'
+import { KEYS } from './Keys'
 
 export const Href: string = '#Javascript'
 export const ImagePath: string = '/assets/images/'

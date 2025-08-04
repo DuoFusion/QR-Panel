@@ -4,8 +4,8 @@ import { Col, NavLink, Row } from "reactstrap";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Href, ImagePath, ROUTES } from "../../constants";
 import SvgIcon from "../../shared/icons/SvgIcon";
-import { toggleSidebar } from "../../store/slices/layoutSlice";
-import { logout } from "../../store/slices/authSlice";
+import { toggleSidebar } from "../../store/slices/LayoutSlice";
+import { logout } from "../../store/slices/AuthSlice";
 import { Image } from "../../shared/image";
 import { Maximize2 } from "iconsax-react";
 

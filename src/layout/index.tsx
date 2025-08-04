@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useAppDispatch } from "../store/hooks";
-import { setSideBarToggle } from "../store/slices/layoutSlice";
+import { setSideBarToggle } from "../store/slices/LayoutSlice";
 import Footer from "./footer";
 import Header from "./header";
 import Sidebar from "./Sidebar";
