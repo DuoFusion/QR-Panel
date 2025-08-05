@@ -1,9 +1,11 @@
 export const KEYS = {
+  LOGIN: "admin-login",
   SEND_PASSWORD_EMAIL: "forgot-password-request",
   VERIFY_OTP: "verify-otp",
-  RESEND_OTP: "resend-otp",
   RESET_PASSWORD: "reset-password",
+  ChANGE_PASSWORD: "change-password",
+  
+  RESEND_OTP: "resend-otp",
   USER: "user-details",
-  PASSWORD_UPDATE: "password-update",
   ALL_TEAMS: "all-teams",
 } as const;

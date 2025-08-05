@@ -4,10 +4,35 @@ export const yupObject = <T extends Record<string, Yup.AnySchema>>(schemaObject:
   return Yup.object().shape(schemaObject);
 };
 
-
-export const loginSchema = Yup.object({
+export const LoginSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Email is required"),
   password: Yup.string()
     .required("Password is required")
     .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "Password must include at least one special character"),
+});
+
+export const ForgotPasswordSchema = Yup.object({
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+});
+
+export const OtpSchema = Yup.object().shape({
+  otp: Yup.string().length(6, "OTP must be 6 digits").required("OTP is required"),
+});
+
+export const confirmPasswordSchema = Yup.object().shape({
+  password: Yup.string()
+    .required("Password is required")
+    .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "Password must include at least one special character"),
+});
+
+export const ChangePasswordSchema = Yup.object().shape({
+  oldPassword: Yup.string()
+    .required("Old Password is required")
+    .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "Old Password must include at least one special character"),
+  newPassword: Yup.string()
+    .required("New Password is required")
+    .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "New Password must include at least one special character"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("newPassword"), undefined], "Password doesn't match")
+    .required("Confirm Password is required"),
 });

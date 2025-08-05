@@ -44,13 +44,13 @@ const Header = () => {
             </li>
             <li className="profile-nav onhover-dropdown p-0 m-0">
               <div className="d-flex profile-media align-items-center">
-                <Image className="b-r-6 img-40" src={user?.user?.profilePhoto ? user?.user?.profilePhoto : `${ImagePath}user/user.png`} alt="profile" />
+                <Image className="b-r-6 img-40" src={user?.profilePhoto ? user?.profilePhoto : `${ImagePath}user/user.png`} alt="profile" />
                 <div className="flex-grow-1">
                   <span>
-                    {user?.user?.firstName} {user?.user?.lastName}
+                    {user?.firstName} {user?.lastName}
                   </span>
                   <p className="mb-0 text-capitalize">
-                    {user?.user?.userType}
+                    {user?.userType}
                     <SvgIcon iconId="header-arrow-down" />
                   </p>
                 </div>

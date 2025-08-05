@@ -1,7 +1,8 @@
 // ************ Svg's ***********
 
+import { FormikHelpers } from "formik";
 import { ReactNode } from "react";
-import { InputProps } from "reactstrap";
+import { Card, CardBody, InputProps } from "reactstrap";
 
 export interface SvgProps {
   iconId: string | undefined;
@@ -28,13 +29,48 @@ export interface ImageProps {
   width?: number;
 }
 
-
 // ************ Form/Input Fields ***********
 
 export interface TextInputProps extends InputProps {
-  label?: string
-  name: string
-  iconProps?: SvgProps
-  children?: ReactNode
-  containerClass?: string
+  label?: string;
+  name: string;
+  iconProps?: SvgProps;
+  children?: ReactNode;
+  containerClass?: string;
+  required?: boolean;
+}
+
+export interface OtpInputProps {
+  val: string[];
+  setVal: (val: string[]) => void;
+  submitForm?: (values: { otp: string }, formikHelpers: FormikHelpers<{ otp: string }>) => void;
+}
+
+// ************ Breadcrumbs ***********
+
+export interface BreadcrumbsProps {
+  mainTitle: string;
+  parent: string;
+}
+
+// ************ CardHeaderProp ***********
+
+export interface TypeFilterData {
+  value?: string;
+  label?: string;
+}
+
+export interface CardHeaderProp {
+  title?: string;
+  headClass?: string;
+  Search?: (key: string) => void;
+  searchClass?: string;
+  btnTitle?: string;
+  btnClick?: () => void;
+  btnLink?: string;
+  typeFilter?: (id: string) => void;
+  typeFilterData?: TypeFilterData[];
+  children?: React.ReactNode
+  cardProps?: React.ComponentProps<typeof Card>
+  bodyProps?: React.ComponentProps<typeof CardBody>
 }

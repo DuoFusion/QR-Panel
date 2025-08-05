@@ -2,14 +2,14 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { getToken } from "../utils";
 import { Params } from "../types";
 
-async function Get<T>(url: string, params?: Params,headers?: Record<string, string>): Promise<T> {
+async function Get<T>(url: string, params?: Params, headers?: Record<string, string>): Promise<T> {
   const token = getToken();
 
   const config: AxiosRequestConfig = {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
-      ...headers
+      Authorization: token,
+      ...headers,
     },
     params,
   };

@@ -2,11 +2,12 @@ export const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const URL = {
   Auth: {
-    Login: "/admin/login",
-    ForgotPassword: "auth/forgot-password",
-    ResetPassword: "auth/reset-password",
-    ResendOtp: "auth/resend-otp",
-    VerifyOtp: "auth/verify-otp",
+    Login: "/auth/login",
+    ForgotPassword: "/auth/forgot_password",
+    VerifyOtp: "/auth/verify_otp",
+    ResetPassword: "/auth/reset_password",
+    ChangePassword: "/auth/change-password",
+    
   },
   Product: {
     GetAllProduct: "/product/new-arrivals",

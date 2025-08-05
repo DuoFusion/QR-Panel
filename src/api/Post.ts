@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { getToken } from "../utils";
+import { message } from "antd";
 
-async function Post<TInput, TResponse>(url: string, data?: TInput): Promise<TResponse> {
+async function Post<TInput, TResponse>(url: string, data?: TInput, isToken: boolean = true): Promise<TResponse> {
   const authToken = getToken();
   const isFormData = data instanceof FormData;
 
@@ -9,7 +10,7 @@ async function Post<TInput, TResponse>(url: string, data?: TInput): Promise<TRes
     method: "POST",
     url,
     headers: {
-      Authorization: `Bearer ${authToken}`,
+      ...(isToken ? { Authorization: authToken } : {}),
       ...(isFormData ? {} : { "Content-Type": "application/json" }),
     },
     data,
@@ -17,7 +18,14 @@ async function Post<TInput, TResponse>(url: string, data?: TInput): Promise<TRes
 
   try {
     const response = await axios(config);
-    return response.data as TResponse;
+    const resData = response.data;
+
+    if (response.status === 200) {
+      message.success(resData.message || "Successful");
+      return resData;
+    } else {
+      return resData as TResponse;
+    }
   } catch (error) {
     const axiosError = error as AxiosError<any>; // <--- set to `any` or a known error shape
 

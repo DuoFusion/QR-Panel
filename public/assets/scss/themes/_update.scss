@@ -13,7 +13,6 @@
   }
 }
 
-
 // tooltip css start
 .tooltip {
   &.bs-tooltip-top {
@@ -1581,10 +1580,13 @@
     }
     label {
       font-size: calc(13px + (14 - 13) * ((100vw - 320px) / (1920 - 320)));
-      font-weight: 700;
+      font-weight: 500;
       text-transform: capitalize;
       margin-bottom: 10px;
       color: #3d3d3d;
+      .required {
+        color: variables.$danger-text-color;
+      }
     }
 
     input {
@@ -1594,7 +1596,7 @@
       width: 100%;
       border-radius: 4px;
 
-      &.is-invalid{
+      &.is-invalid {
         border: 1px dashed variables.$danger-text-color !important;
       }
       &.custom-checkbox:checked {
@@ -1607,6 +1609,31 @@
       &:disabled {
         background-color: var(--bs-secondary-bg);
         color: #6e6e6f;
+      }
+    }
+    .show-hide {
+      position: absolute;
+      // top: 46px;
+      right: 25px;
+      transform: translateY(-50%);
+      span {
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--theme-default);
+        &.show {
+          &:before {
+            content: "\f06e";
+            font-family: variables.$font-awesome;
+            font-weight: 900;
+            color: variables.$light-text;
+          }
+        }
+        &:before {
+          content: "\f070";
+          font-family: variables.$font-awesome;
+          font-weight: 900;
+          color: variables.$light-text;
+        }
       }
     }
     .quill {
@@ -1704,6 +1731,42 @@
 
       i {
         margin-right: 6px;
+      }
+    }
+  }
+}
+
+.card-header-box {
+  .form-group {
+    position: relative;
+    input {
+      background-color: variables.$white;
+      border: 1px dashed #dedbdb;
+      border-radius: 4px;
+      box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
+      height: 50px;
+      padding-left: 30px;
+    }
+    i {
+      position: absolute;
+      top: 18px;
+      right: 30px;
+      color: variables.$dark-gray;
+    }
+    Button {
+      height: 50px;
+    }
+    select.form-select {
+      background-color: #fff;
+      padding: 8px 16px;
+      border: 1px dashed #dedbdb;
+      width: 100%;
+      border-radius: 4px;
+      height: 50px;
+      margin-bottom: 15px;
+      &:focus {
+        border: 1px dashed #dedbdb !important;
+        box-shadow: none !important;
       }
     }
   }

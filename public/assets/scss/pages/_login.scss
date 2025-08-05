@@ -55,6 +55,27 @@
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
     background-color: $white;
+
+    .otp-form {
+      .otp-input-wrapper {
+        gap: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 25px;
+        .otp-input {
+          width: 100%;
+          font-weight: 500;
+          // padding: 0px 20px 0px;
+          font-size: 40px;
+          text-align: center;
+          color: #282828;
+          border: none;
+          border-bottom: 1px solid $dark-color;
+          outline: none;
+        }
+      }
+    }
     .input-box {
       margin-bottom: 15px;
       label {
@@ -90,11 +111,17 @@
           color: var(--theme-default);
           &.show {
             &:before {
-              content: "show";
+              content: "\f06e";
+              font-family: $font-awesome;
+              font-weight: 900;
+              color: $light-text;
             }
           }
           &:before {
-            content: "hide";
+            content: "\f070";
+            font-family: $font-awesome;
+            font-weight: 900;
+            color: $light-text;
           }
         }
       }
@@ -231,21 +258,21 @@
     font-size: 13px;
     color: var(--theme-default);
 
-    &.show {
-      &:before {
-        content: "\f06e";
-        font-family: $font-awesome;
-        font-weight: 900;
-        color: $light-text;
-      }
-    }
+    // &.show {
+    //   &:before {
+    //     content: "\f06e";
+    //     font-family: $font-awesome;
+    //     font-weight: 900;
+    //     color: $light-text;
+    //   }
+    // }
 
-    &:before {
-      content: "\f070";
-      font-family: $font-awesome;
-      font-weight: 900;
-      color: $light-text;
-    }
+    // &:before {
+    //   content: "\f070";
+    //   font-family: $font-awesome;
+    //   font-weight: 900;
+    //   color: $light-text;
+    // }
   }
 }
 

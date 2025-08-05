@@ -1,12 +1,11 @@
 import { InvalidateQueryFilters, QueryKey, useMutation, UseMutationOptions, useQueryClient } from "@tanstack/react-query";
+import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { HTTP_STATUS, ROUTES } from "../../constants";
 import { useAppDispatch } from "../../store/hooks";
 import { logout } from "../../store/slices/AuthSlice";
 import type { CombinedErrorResponse } from "../../types";
-// import { errorMessage } from "../../utils/custom-functions";
-// import { toaster } from "../../utils/custom-functions";
-// import { CombinedErrorResponse } from "../../types";
+import { ErrorMessage } from "../../utils/errorMessage";
 
 function useApiPost<TInput, TResponse>(mutationKey: QueryKey, callback: (input: TInput) => Promise<TResponse>, options?: UseMutationOptions<TResponse, CombinedErrorResponse, TInput>) {
   const q = useQueryClient();
@@ -31,7 +30,7 @@ function useApiPost<TInput, TResponse>(mutationKey: QueryKey, callback: (input: 
           });
           break;
         default:
-          // toaster("error", errorMessage(error));
+          message.error(ErrorMessage(error));
           break;
       }
     },

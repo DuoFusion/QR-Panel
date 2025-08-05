@@ -7,7 +7,7 @@ async function Delete<T>(url: string): Promise<T> {
     method: "DELETE",
     url,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: token,
     },
   };
 

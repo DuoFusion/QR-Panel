@@ -711,7 +711,7 @@
           }
         }
         .profile-dropdown {
-          width: 160px;
+          width: 182px;
           top: 57px;
           left: -12px;
           padding: 0 10px;
@@ -765,6 +765,7 @@
     }
   }
   .page-body-wrapper {
+    background-color: $background-white;
     .page-body {
       min-height: calc(100vh - #{$header-size});
       margin-top: $header-size;
@@ -778,6 +779,8 @@
     .page-title {
       padding: $page-title-padding;
       margin: 0 -27px;
+      background-color: $white;
+      margin-bottom: 30px;
       > .row {
         margin: 0;
         .col-6 {
@@ -810,16 +813,17 @@
         li {
           font-size: 14px;
           font-family: $font-lexend, $font-serif;
+          font-weight: 500;
         }
         .breadcrumb-item {
           & + .breadcrumb-item {
             &:before {
               content: $breadcrumb-content;
-              color: $secondary-color;
+              color: $primary-color;
             }
           }
           a {
-            background: rgba(170, 132, 244, 0.1);
+            background: rgba(197, 195, 202, 0.1);
             height: 28px;
             width: 30px;
             display: flex;
@@ -828,16 +832,17 @@
             svg {
               width: 16px;
               height: 16px;
-              stroke: $secondary-color;
+              stroke: $primary-color;
               vertical-align: text-top;
               fill: none;
             }
           }
           &:not(:first-child, :last-child) {
-            color: $secondary-color;
+            color: $primary-color;
           }
           &.active {
-            color: rgba(183, 147, 255, 0.56);
+            // color: rgba(183, 147, 255, 0.56);
+            font-weight: 300;
           }
         }
       }
