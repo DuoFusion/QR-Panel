@@ -34,9 +34,7 @@ export interface ImageProps {
 export interface TextInputProps extends InputProps {
   label?: string;
   name: string;
-  iconProps?: SvgProps;
   children?: ReactNode;
-  containerClass?: string;
   required?: boolean;
 }
 
@@ -67,10 +65,17 @@ export interface CardHeaderProp {
   searchClass?: string;
   btnTitle?: string;
   btnClick?: () => void;
-  btnLink?: string;
   typeFilter?: (id: string) => void;
   typeFilterData?: TypeFilterData[];
   children?: React.ReactNode
   cardProps?: React.ComponentProps<typeof Card>
   bodyProps?: React.ComponentProps<typeof CardBody>
+}
+
+// ************ CardHeaderProp ***********
+
+export interface PageState {
+  page: number;
+  limit: number;
+  page_limit: number;
 }

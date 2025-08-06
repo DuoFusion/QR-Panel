@@ -7,11 +7,12 @@ const URL = {
     VerifyOtp: "/auth/verify_otp",
     ResetPassword: "/auth/reset_password",
     ChangePassword: "/auth/change-password",
-    
   },
-  Product: {
-    GetAllProduct: "/product/new-arrivals",
-    TeamMembers: "team/members",
+  User: {
+    GetAllUser: "/users",
+    Add: "/users/add",
+    Delete: "/users/delete",
+    Edit: "/users/edit",
   },
 } as const;
 

@@ -7,4 +7,5 @@ export const ROUTES = {
   CHANGE_PASSWORD: '/change-password',
   DASHBOARD: '/dashboard',
   USER: '/user',
+  USER_Add_Edit: '/add-edit-user',
 } as const

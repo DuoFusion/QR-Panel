@@ -4,6 +4,8 @@ import { HTTP_STATUS, ROUTES } from "../../constants";
 import { useAppDispatch } from "../../store/hooks";
 import { logout } from "../../store/slices/AuthSlice";
 import { CombinedErrorResponse } from "../../types";
+import { message } from "antd";
+import { ErrorMessage } from "../../utils/errorMessage";
 // import { errorMessage, toaster } from '../../utils/custom-functions'
 
 function useApiDelete<TInput, TResponse>(mutationKey: QueryKey, callback: (input: TInput) => Promise<TResponse>, options?: UseMutationOptions<TResponse, CombinedErrorResponse, TInput>) {
@@ -29,7 +31,7 @@ function useApiDelete<TInput, TResponse>(mutationKey: QueryKey, callback: (input
           });
           break;
         default:
-          // toaster('error', errorMessage(error))
+          message.error(ErrorMessage(error));
           break;
       }
     },

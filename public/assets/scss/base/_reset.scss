@@ -680,7 +680,7 @@ $label-color: variables.$primary-color, variables.$secondary-color, variables.$s
 }
 
 .btn-light {
-  background-color: rgba(variables.$primary-color, 0.06) !important;
+  background-color: rgba(variables.$primary-color, 0) !important;
   border-color: rgba(variables.$primary-color, 0.06) !important;
 
   &:hover {

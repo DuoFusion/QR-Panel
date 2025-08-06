@@ -36,3 +36,17 @@ export const ChangePasswordSchema = Yup.object().shape({
     .oneOf([Yup.ref("newPassword"), undefined], "Password doesn't match")
     .required("Confirm Password is required"),
 });
+
+export const UserSchema = Yup.object().shape({
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+  phoneNumber: Yup.string()
+    .required("Phone Number is required")
+    .matches(/^[0-9]{10}$/, "Phone Number must be exactly 10 digits and contain no letters"),
+  address: Yup.string().required("Address is required"),
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "Password must include at least one special character"),
+  link: Yup.string().url("Link must be a valid URL").required("Link is required"),
+});

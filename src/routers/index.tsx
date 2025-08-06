@@ -10,6 +10,7 @@ import { ROUTES } from "../constants";
 import Layout from "../layout";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
+import AddEditUser from "../components/user/AddEditUser";
 
 export const Router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const Router = createBrowserRouter([
           { path: ROUTES.HOME, element: <Dashboard /> },
           { path: ROUTES.CHANGE_PASSWORD, element: <ChangePasswordContainer /> },
           { path: ROUTES.USER, element: <UserContainer /> },
+          { path: ROUTES.USER_Add_Edit, element: <AddEditUser /> },
         ],
       },
     ],

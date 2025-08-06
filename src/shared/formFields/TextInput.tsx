@@ -4,7 +4,7 @@ import { TextInputProps } from "../../types";
 import SvgIcon from "../icons/SvgIcon";
 import { useState } from "react";
 
-export default function TextInput({ label, iconProps, containerClass = "login-input", children, name, autoComplete = "off", type = "text", required, ...props }: TextInputProps) {
+export default function TextInput({ label, children, name, autoComplete = "off", type = "text", required, ...props }: TextInputProps) {
   const { validate, ...inputProps } = props;
   const fieldConfig: FieldHookConfig<string> = { name, validate };
   const [field, meta] = useField(fieldConfig);
@@ -36,12 +36,5 @@ export default function TextInput({ label, iconProps, containerClass = "login-in
     </div>
   );
 
-  return iconProps?.iconId ? (
-    <div className={containerClass}>
-      <SvgIcon {...iconProps} />
-      {formGroupContent}
-    </div>
-  ) : (
-    formGroupContent
-  );
+  return formGroupContent;
 }

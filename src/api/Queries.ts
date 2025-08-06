@@ -1,10 +1,11 @@
 import { KEYS, URL_KEYS } from "../constants";
+import { Params, UserDataApiResponse } from "../types";
 // import { AccountResponse, ChannelsResponse, Params, SettingsResponse, TeamMemberResponse, TeamsResponse, UserListResponse } from "../types";
 import Get from "./Get";
 import { useApiGet } from "./hooks";
 
 const Queries = {
-  useGetTeams: () => useApiGet<any>([KEYS.ALL_TEAMS], () => Get(URL_KEYS.Product.GetAllProduct)),
+  useGetUser: (params: Params) => useApiGet<UserDataApiResponse>([KEYS.USER.ALL_USER, params], () => Get(URL_KEYS.User.GetAllUser, params)),
   // useGetUserDetails: () => useApiGet<AccountResponse>([KEYS.USER], () => get(URL_KEYS.Profile.Details)),
 
   // useGetSettings: () =>
