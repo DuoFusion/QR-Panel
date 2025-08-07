@@ -10,6 +10,16 @@ export const KEYS = {
     DELETE_USER: "delete-user",
     EDIT_USER: "edit-user",
   },
+  UPLOAD: {
+    ALL_UPLOAD: "upload",
+    DELETE_UPLOAD: "upload",
+  },
+  USER_SETTING: {
+    ALL_USER_SETTING: "setting",
+    ADD_USER_SETTING: "add-setting",
+    DELETE_USER_SETTING: "delete-setting",
+    EDIT_USER_SETTING: "edit-setting",
+  },
 
   ALL_TEAMS: "all-teams",
 } as const;

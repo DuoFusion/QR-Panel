@@ -24,7 +24,7 @@ async function Post<TInput, TResponse>(url: string, data?: TInput, isToken: bool
       message.success(resData.message || "Successful");
       return resData;
     } else {
-      return resData as TResponse;
+      return null as TResponse;
     }
   } catch (error) {
     const axiosError = error as AxiosError<any>; // <--- set to `any` or a known error shape

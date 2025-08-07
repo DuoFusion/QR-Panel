@@ -50,3 +50,21 @@ export const UserSchema = Yup.object().shape({
     .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "Password must include at least one special character"),
   link: Yup.string().url("Link must be a valid URL").required("Link is required"),
 });
+
+export const SettingSchema = Yup.object().shape({
+  title: Yup.string().required("title is required"),
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  phoneNumber: Yup.string()
+    .required("Phone Number is required")
+    .matches(/^[0-9]{10}$/, "Phone Number must be exactly 10 digits and contain no letters"),
+  content: Yup.string().required("Content is required"),
+  address: Yup.string().required("Address is required"),
+  userId: Yup.string().required("User is required"),
+  qrCode: Yup.string().url("Link must be a valid URL").notRequired(),
+  facebook: Yup.string().notRequired(),
+  instagram: Yup.string().notRequired(),
+  whatsapp: Yup.string().notRequired(),
+  location: Yup.string().notRequired(),
+  logoImage: Yup.array().min(1, "Logo is required").required("Logo is required"),
+  bannerImage: Yup.array().min(1, "Banner image is required").required("Banner image is required"),
+});

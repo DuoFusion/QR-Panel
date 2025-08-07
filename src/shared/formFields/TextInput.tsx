@@ -1,10 +1,9 @@
 import { FieldHookConfig, useField } from "formik";
-import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
-import { TextInputProps } from "../../types";
-import SvgIcon from "../icons/SvgIcon";
 import { useState } from "react";
+import { FormFeedback, Input, InputGroup, InputGroupText, Label } from "reactstrap";
+import { TextInputProps } from "../../types";
 
-export default function TextInput({ label, children, name, autoComplete = "off", type = "text", required, ...props }: TextInputProps) {
+export default function TextInput({ label, children, name, autoComplete = "off", type = "text", required, inputGroupIcon, ...props }: TextInputProps) {
   const { validate, ...inputProps } = props;
   const fieldConfig: FieldHookConfig<string> = { name, validate };
   const [field, meta] = useField(fieldConfig);
@@ -23,7 +22,14 @@ export default function TextInput({ label, children, name, autoComplete = "off",
           {required && <span className="required ps-1">*</span>}
         </Label>
       )}
-      <Input {...field} {...inputProps} autoComplete={autoComplete} type={inputType} placeholder={props.placeholder ? props.placeholder : undefined} invalid={meta.touched && !!meta.error} />
+      {inputGroupIcon ? (
+        <InputGroup>
+          <InputGroupText className="list-light-primary">{inputGroupIcon}</InputGroupText>
+          <Input {...field} {...inputProps} autoComplete={autoComplete} type={inputType} placeholder={props.placeholder ? props.placeholder : undefined} invalid={meta.touched && !!meta.error} />
+        </InputGroup>
+      ) : (
+        <Input {...field} {...inputProps} autoComplete={autoComplete} type={inputType} placeholder={props.placeholder ? props.placeholder : undefined} invalid={meta.touched && !!meta.error} />
+      )}
       {meta.touched && meta.error ? <FormFeedback>{meta.error}</FormFeedback> : null}
 
       {isPassword && (

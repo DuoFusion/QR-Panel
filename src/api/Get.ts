@@ -1,6 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { getToken } from "../utils";
 import { Params } from "../types";
+import { HTTP_STATUS, ROUTES } from "../constants";
+import { message } from "antd";
+import { ErrorMessage } from "../utils/errorMessage";
+
+let isRedirecting = false;
 
 async function Get<T>(url: string, params?: Params, headers?: Record<string, string>): Promise<T> {
   const token = getToken();
@@ -21,9 +26,17 @@ async function Get<T>(url: string, params?: Params, headers?: Record<string, str
     const axiosError = error as AxiosError<any>;
 
     const responseData = axiosError.response?.data as { message?: string };
-    const message = responseData?.message || axiosError.message || "Something went wrong";
+    const errorMessage = responseData?.message || axiosError.message || "Something went wrong";
+    const status = axiosError?.response?.status;
 
-    throw new Error(message);
+    if (status === HTTP_STATUS.UNAUTHORIZED && !isRedirecting) {
+      isRedirecting = true;
+      window.location.href = ROUTES.HOME;
+      setTimeout(() => (isRedirecting = false), 1000);
+    } else {
+      message.error(ErrorMessage(errorMessage));
+    }
+    throw null;
   }
 }
 

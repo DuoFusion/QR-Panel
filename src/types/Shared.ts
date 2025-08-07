@@ -1,5 +1,7 @@
 // ************ Svg's ***********
 
+import type { GetProp, UploadProps } from "antd";
+import { UploadListType } from "antd/es/upload/interface";
 import { FormikHelpers } from "formik";
 import { ReactNode } from "react";
 import { Card, CardBody, InputProps } from "reactstrap";
@@ -36,12 +38,22 @@ export interface TextInputProps extends InputProps {
   name: string;
   children?: ReactNode;
   required?: boolean;
+  inputGroupIcon?: any;
 }
 
 export interface OtpInputProps {
   val: string[];
   setVal: (val: string[]) => void;
   submitForm?: (values: { otp: string }, formikHelpers: FormikHelpers<{ otp: string }>) => void;
+}
+
+export interface SelectInputProps {
+  label?: string;
+  name: string;
+  required?: boolean;
+  options: { value: string | number; label: string; disabled?: boolean }[];
+  placeholder?: string;
+  [key: string]: any;
 }
 
 // ************ Breadcrumbs ***********
@@ -67,9 +79,9 @@ export interface CardHeaderProp {
   btnClick?: () => void;
   typeFilter?: (id: string) => void;
   typeFilterData?: TypeFilterData[];
-  children?: React.ReactNode
-  cardProps?: React.ComponentProps<typeof Card>
-  bodyProps?: React.ComponentProps<typeof CardBody>
+  children?: React.ReactNode;
+  cardProps?: React.ComponentProps<typeof Card>;
+  bodyProps?: React.ComponentProps<typeof CardBody>;
 }
 
 // ************ CardHeaderProp ***********
@@ -78,4 +90,26 @@ export interface PageState {
   page: number;
   limit: number;
   page_limit: number;
+}
+
+// ************ Upload ***********
+
+export interface UploadResponse {
+  data: string;
+  error: Record<string, unknown>;
+  message: string;
+  status: number;
+}
+
+export type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
+
+export interface ImageUploadProps {
+  fileList: string[];
+  setFileList: React.Dispatch<React.SetStateAction<string[]>>;
+  multiple?: boolean;
+  name?: string;
+  accept?: string;
+  isListType?: UploadListType;
+  label?: string;
+  required?: boolean;
 }

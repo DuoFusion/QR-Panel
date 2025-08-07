@@ -14,6 +14,16 @@ const URL = {
     Delete: "/users/delete",
     Edit: "/users/edit",
   },
+  Upload: {
+    Add: "/upload",
+    Delete: "/upload",
+  },
+  UserSetting: {
+    GetAllUserSetting: "/setting",
+    Add: "/setting/add",
+    Delete: "/setting/delete",
+    Edit: "/setting/edit",
+  },
 } as const;
 
 // Construct the URL object

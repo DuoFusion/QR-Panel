@@ -1693,6 +1693,9 @@
       &:focus-visible {
         outline: none !important;
       }
+      &.is-invalid {
+        border: 1px dashed variables.$danger-text-color !important;
+      }
     }
 
     select.form-select {
@@ -1709,6 +1712,21 @@
         background-color: var(--bs-secondary-bg);
         color: #6e6e6f;
       }
+    }
+    .ant-select {
+      display: block;
+      height: auto;
+      .ant-select-selector {
+        border: 1px dashed #dedbdb;
+        padding: 8px 16px;
+        box-shadow: none !important;
+      }
+      &.is-invalid .ant-select-selector{
+        border: 1px dashed #d62131 !important;
+      }
+    }
+    :where(.css-dev-only-do-not-override-1vjf2v5).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+      border-color: #dedbdb !important;
     }
     .switch {
       .switch-state {

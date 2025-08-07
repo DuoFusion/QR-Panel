@@ -11,6 +11,8 @@ import Layout from "../layout";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 import AddEditUser from "../components/user/AddEditUser";
+import SettingContainer from "../components/setting";
+import AddEditSetting from "../components/setting/AddEditSetting";
 
 export const Router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ export const Router = createBrowserRouter([
           { path: ROUTES.CHANGE_PASSWORD, element: <ChangePasswordContainer /> },
           { path: ROUTES.USER, element: <UserContainer /> },
           { path: ROUTES.USER_Add_Edit, element: <AddEditUser /> },
+          { path: ROUTES.SETTING, element: <SettingContainer /> },
+          { path: ROUTES.SETTING_Add_Edit, element: <AddEditSetting /> },
         ],
       },
     ],
