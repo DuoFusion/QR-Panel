@@ -10,4 +10,8 @@ export const ROUTES = {
   USER_Add_Edit: "/add-edit-user",
   SETTING: "/setting",
   SETTING_Add_Edit: "/add-edit-setting",
+  PRODUCT: "/product",
+  PRODUCT_Add_Edit: "/add-edit-product",
+  INQUIRY: "/inquiry",
+  ORDER: "/order",
 } as const;

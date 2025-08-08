@@ -1,4 +1,5 @@
-import { PageState } from "./Shared";
+import { MessageStatus, PageStatus } from "./Shared";
+import { UserType } from "./User";
 
 export interface SettingFormValues {
   title?: string;
@@ -14,6 +15,8 @@ export interface SettingFormValues {
   qrCode?: string;
   logoImage?: string | string[];
   bannerImage?: string | string[];
+  primary?: string;
+  secondary?: string;
 }
 
 export interface SocialLinks {
@@ -23,21 +26,19 @@ export interface SocialLinks {
   location: string;
 }
 
-export interface SettingType extends Required<SettingFormValues> {
+export interface SettingType extends Omit<Required<SettingFormValues>, "userId"> {
   _id: string;
+  userId: UserType;
   socialLinks: SocialLinks;
   isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface SettingApiResponse {
-  status: number;
-  message: string;
-  data: {
-    setting_data: SettingType[];
-    totalData: number;
-    state: PageState;
-  };
-  error: Record<string, any>;
+export interface SettingDataResponse extends PageStatus {
+  setting_data: SettingType[];
+}
+
+export interface SettingApiResponse extends MessageStatus {
+  data: SettingDataResponse;
 }

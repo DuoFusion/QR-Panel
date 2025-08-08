@@ -1,4 +1,4 @@
-import { PageState } from "./Shared";
+import { MessageStatus, PageStatus } from "./Shared";
 
 export interface UserPayload {
   firstName?: string;
@@ -28,15 +28,10 @@ export interface UserType extends Required<UserPayload> {
   updatedAt: string;
 }
 
-export interface UserDataResponse {
+export interface UserDataResponse extends PageStatus {
   User_data: UserType[];
-  totalData: number;
-  state: PageState;
 }
 
-export interface UserDataApiResponse {
-  status: number;
-  message: string;
+export interface UserDataApiResponse extends MessageStatus {
   data: UserDataResponse;
-  error: Record<string, any>;
 }

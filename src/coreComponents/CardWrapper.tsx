@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Button, Card, CardBody, CardHeader, Col, Input, Row } from "reactstrap";
 import { CardHeaderProp } from "../types";
+import { Select } from "antd";
 
 const CardWrapper: FC<CardHeaderProp> = ({ title, headClass, Search, searchClass, btnTitle, btnClick, typeFilter, typeFilterData, children, bodyProps = {}, cardProps = {} }) => {
   return (
@@ -13,7 +14,7 @@ const CardWrapper: FC<CardHeaderProp> = ({ title, headClass, Search, searchClass
             </Col>
           )}
           {Search && (
-            <Col xs="7" className={searchClass}>
+            <Col xs="12" className={searchClass}>
               <div className="form-group">
                 <Input type="text" placeholder="Search" onChange={(e) => Search?.(e.target.value)} />
                 <i className="fa fa-search" />
@@ -21,21 +22,14 @@ const CardWrapper: FC<CardHeaderProp> = ({ title, headClass, Search, searchClass
             </Col>
           )}
           {typeFilter && (
-            <Col md="2" sm="7" xs="12">
-              <div className="form-group m-0">
-                <select className="form-select" onChange={(e) => typeFilter(e.target.value)}>
-                  <option value="">-- Select Type --</option>
-                  {typeFilterData?.map((link, index) => (
-                    <option value={link?.value} key={index}>
-                      {link?.label}
-                    </option>
-                  ))}
-                </select>
+            <Col xl="2" md="3" sm="7" xs="12">
+              <div className="form-group">
+                <Select showSearch allowClear optionFilterProp="label" placeholder="Select a user" options={typeFilterData} onChange={typeFilter} onClear={() => typeFilter("")} filterOption={(input, option) => (option?.label ?? "").toString().toLowerCase().includes(input.toLowerCase())} />
               </div>
             </Col>
           )}
           {btnClick && (
-            <Col md="2" sm="5" xs="12">
+            <Col xl="2" md="3" sm="5" xs="12">
               <div className="form-group">
                 <Button color="primary" className="w-100" onClick={btnClick}>
                   {btnTitle}

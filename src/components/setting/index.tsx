@@ -8,7 +8,7 @@ import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import Breadcrumbs from "../../coreComponents/Breadcrumbs";
 import CardWrapper from "../../coreComponents/CardWrapper";
-import { SettingType, UserType } from "../../types";
+import { SettingType } from "../../types";
 import useBasicTableFilterHelper from "../../utils/hook/useBasicTableFilterHelper";
 
 const SettingContainer = () => {
@@ -42,12 +42,12 @@ const SettingContainer = () => {
       title: "User",
       dataIndex: "userId",
       key: "userId",
+      render: (_, record) => `${record.userId.firstName} ${record.userId.lastName}`,
     },
     {
       title: "Web Name",
-      dataIndex: "firstName",
-      key: "firstName",
-      render: (_, record) => `${record.title}`,
+      dataIndex: "title",
+      key: "title",
     },
     {
       title: "Email",
@@ -63,19 +63,19 @@ const SettingContainer = () => {
       title: "Logo",
       dataIndex: "logoImage",
       key: "logoImage",
-      render: (logoImage: string) => (logoImage ? <Image src={logoImage} width={60} height={60} alt="Category" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
+      render: (logoImage: string) => (logoImage ? <Image src={logoImage} width={60} height={60} alt="logo" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
     },
     {
       title: "Banner",
       dataIndex: "bannerImage",
       key: "bannerImage",
-      render: (bannerImage: string) => (bannerImage ? <Image src={bannerImage} width={60} height={60} alt="Category" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
+      render: (bannerImage: string) => (bannerImage ? <Image src={bannerImage} width={60} height={60} alt="banner" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
     },
     {
       title: "QR",
       dataIndex: "qrCode",
       key: "qrCode",
-      render: (qrCode: string) => (qrCode ? <Image src={qrCode} width={60} height={60} alt="Category" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
+      render: (qrCode: string) => (qrCode ? <Image src={qrCode} width={60} height={60} alt="qr" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
     },
     {
       title: "Option",
@@ -112,7 +112,7 @@ const SettingContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Setting" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-md-10 col-sm-7" btnTitle="Add Setting" btnClick={() => navigate(ROUTES.SETTING_Add_Edit)}>
+        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-xl-10 col-md-9 col-sm-7" btnTitle="Add Setting" btnClick={() => navigate(ROUTES.SETTING_Add_Edit)}>
           <Table
             className="custom-table"
             dataSource={AllUser?.setting_data}

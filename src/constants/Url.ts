@@ -24,6 +24,20 @@ const URL = {
     Delete: "/setting/delete",
     Edit: "/setting/edit",
   },
+  Product: {
+    GetAllProduct: "/product",
+    Add: "/product/add",
+    Delete: "/product/delete",
+    Edit: "/product/edit",
+  },
+  Inquiry: {
+    GetAllInquiry: "/inquiry",
+    Delete: "/inquiry/delete",
+  },
+  Order: {
+    GetAllOrder: "/order",
+    Delete: "/order/delete",
+  },
 } as const;
 
 // Construct the URL object

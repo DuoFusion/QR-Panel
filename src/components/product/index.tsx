@@ -1,30 +1,32 @@
+import { Button, Flex, Image, Modal } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
+import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
+import { ROUTES } from "../../constants";
 import Breadcrumbs from "../../coreComponents/Breadcrumbs";
 import CardWrapper from "../../coreComponents/CardWrapper";
-import { UserType } from "../../types";
-import { Button, Flex, Modal, Spin } from "antd";
-import { Edit, Trash } from "iconsax-react";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../constants";
 import useBasicTableFilterHelper from "../../utils/hook/useBasicTableFilterHelper";
+import { ProductType } from "../../types";
+import { generateOptions } from "../../utils";
 
-const UserContainer = () => {
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper();
+const ProductContainer = () => {
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper();
 
   const navigate = useNavigate();
-  const { mutate } = Mutations.useDeleteUser();
-  const { data, isLoading } = Queries.useGetUser(params);
+  const { mutate } = Mutations.useDeleteProduct();
+  const { data, isLoading } = Queries.useGetProduct(params);
+  const { data: User } = Queries.useGetUser({});
   const AllUser = data?.data;
 
   const handleDelete = async (id: string) => {
     mutate(id);
   };
 
-  const handleEdit = (item: UserType) => {
-    navigate(ROUTES.USER_Add_Edit, {
+  const handleEdit = (item: ProductType) => {
+    navigate(ROUTES.PRODUCT_Add_Edit, {
       state: {
         editData: item,
         edit: true,
@@ -32,33 +34,44 @@ const UserContainer = () => {
     });
   };
 
-  const columns: ColumnsType<UserType> = [
+  const columns: ColumnsType<ProductType> = [
     {
       title: "ID",
       key: "index",
       render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1,
     },
     {
-      title: "Name",
-      dataIndex: "firstName",
-      key: "firstName",
-      render: (text, record) => `${record.firstName} ${record.lastName}`,
+      title: "User",
+      dataIndex: "userId",
+      key: "userId",
+      render: (_, record) => (record?.userId?.firstName ? `${record?.userId?.firstName} ${record?.userId?.lastName}` : "-"),
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "Product Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      title: "Phone",
-      dataIndex: "phoneNumber",
-      key: "phoneNumber",
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
     },
     {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-      render: (role) => role.charAt(0).toUpperCase() + role.slice(1),
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "description",
+      dataIndex: "description",
+      key: "description",
+      width: 400,
+    },
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      render: (image: string) => (image ? <Image src={image} width={60} height={60} alt="image" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
     },
     {
       title: "Option",
@@ -76,7 +89,7 @@ const UserContainer = () => {
             onClick={() => {
               Modal.confirm({
                 title: "Are you sure?",
-                content: `Do you really want to delete "${record.firstName} ${record.lastName}"?`,
+                content: `Do you really want to delete "${record.name}"?`,
                 okText: "Yes, Delete",
                 cancelText: "Cancel",
                 onOk: () => handleDelete(record?._id),
@@ -93,12 +106,12 @@ const UserContainer = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="User" parent="Pages" />
+      <Breadcrumbs mainTitle="Product" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-xl-10 col-md-9 col-sm-7" btnTitle="Add User" btnClick={() => navigate(ROUTES.USER_Add_Edit)}>
+        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-md-6 col-xl-8" btnTitle="Add Product" typeFilterData={generateOptions(User?.data?.User_data)} typeFilter={handleSetSortBy} btnClick={() => navigate(ROUTES.PRODUCT_Add_Edit)}>
           <Table
             className="custom-table"
-            dataSource={AllUser?.User_data}
+            dataSource={AllUser?.product_data}
             columns={columns}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
@@ -117,4 +130,4 @@ const UserContainer = () => {
   );
 };
 
-export default UserContainer;
+export default ProductContainer;

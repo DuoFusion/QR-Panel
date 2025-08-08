@@ -9,7 +9,7 @@ import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import Breadcrumbs from "../../coreComponents/Breadcrumbs";
 import CardWrapper from "../../coreComponents/CardWrapper";
-import { ImageUpload, SelectInput, TextInput } from "../../shared/formFields";
+import { ColorPickerInput, ImageUpload, SelectInput, TextInput } from "../../shared/formFields";
 import { SettingFormValues } from "../../types";
 import { SettingSchema } from "../../utils/validationSchemas";
 import { generateOptions } from "../../utils";
@@ -29,7 +29,7 @@ const AddEditSetting = () => {
   const [isBannerImage, setBannerImage] = useState<string[]>(initialData?.bannerImage ? [initialData.bannerImage] : []);
 
   const initialValues: SettingFormValues = {
-    userId: initialData?.userId || "",
+    userId: initialData?.userId?._id || "",
     title: initialData?.title || "",
     email: initialData?.email || "",
     phoneNumber: initialData?.phoneNumber || "",
@@ -40,6 +40,8 @@ const AddEditSetting = () => {
     instagram: initialData?.socialLinks?.instagram || "",
     whatsapp: initialData?.socialLinks?.whatsapp || "",
     location: initialData?.socialLinks?.location || "",
+    primary: initialData?.primary || "",
+    secondary: initialData?.secondary || "",
     logoImage: initialData?.logoImage ? [initialData.logoImage] : [],
     bannerImage: initialData?.bannerImage ? [initialData.bannerImage] : [],
   };
@@ -55,6 +57,8 @@ const AddEditSetting = () => {
       ...(values.logoImage?.length && { logoImage: values.logoImage[0] }),
       ...(values.bannerImage?.length && { bannerImage: values.bannerImage[0] }),
       ...(values.qrCode && { qrCode: values.qrCode }),
+      ...(values.primary && { primary: values.primary }),
+      ...(values.secondary && { secondary: values.secondary }),
       socialLinks: {
         ...(values.facebook && { facebook: values.facebook }),
         ...(values.instagram && { instagram: values.instagram }),
@@ -86,13 +90,7 @@ const AddEditSetting = () => {
                 <Form>
                   <Row className="gy-3">
                     <Col md="6">
-                      <SelectInput
-                        name="userId"
-                        label="User"
-                        options={generateOptions(data?.data?.User_data)}
-                        loading={isLoading}
-                        required
-                      />
+                      <SelectInput name="userId" label="User" options={generateOptions(data?.data?.User_data)} loading={isLoading} required />
                     </Col>
                     <Col md="6">
                       <TextInput name="title" label="Title" type="text" placeholder="Enter your Title" required />
@@ -124,7 +122,13 @@ const AddEditSetting = () => {
                     <Col md="6" xl="4">
                       <TextInput name="location" label="Location" type="text" placeholder="Map Link" inputGroupIcon={<Location />} />
                     </Col>
-                    <Col md="3">
+                    <Col xs="6" md="2">
+                      <ColorPickerInput label="Primary Color" name="primary" required showText />
+                    </Col>
+                    <Col xs="6" md="2">
+                      <ColorPickerInput label="Secondary Color" name="secondary" required showText />
+                    </Col>
+                    <Col sm="6" md="3">
                       <ImageUpload
                         name="logoImage"
                         label="Upload Logo"
@@ -136,7 +140,7 @@ const AddEditSetting = () => {
                         required
                       />
                     </Col>
-                    <Col md="6">
+                    <Col sm="6" md="3">
                       <ImageUpload
                         name="bannerImage"
                         label="Upload Banner Image"

@@ -7,12 +7,12 @@ const useBasicTableFilterHelper = (initialParams?: Params) => {
   const [pageSize, setPageSize] = useState(initialParams?.limit ?? 10);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const debouncedSearchTerm = useDebounce(searchTerm, 0);
-  const [sortBy, setSortBy] = useState(initialParams?.sortBy ?? null);
+  const [sortBy, setSortBy] = useState<string | null>(initialParams?.sortBy ?? null);
 
   const [params, setParams] = useState<Params>({
     page: pageNumber,
     limit: pageSize,
-    search: "",
+    search: searchTerm,
     ...initialParams,
   });
 
@@ -26,17 +26,20 @@ const useBasicTableFilterHelper = (initialParams?: Params) => {
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
-    if (sortBy) {
-      setParams((prev) => ({
-        ...prev,
-        OrderBy: sortBy,
-      }));
-    }
+    setParams((prev) => {
+      const newParams = { ...prev };
+      if (sortBy) {
+        newParams.userFilter = sortBy;
+      } else {
+        delete newParams.userFilter; 
+      }
+      return newParams;
+    });
   }, [sortBy]);
 
   const handleSetSearch = useCallback((e: string) => setSearchTerm(e), []);
 
-  const handleSetSortBy = useCallback((e: string) => setSortBy(e), []);
+  const handleSetSortBy = useCallback((e: string) => setSortBy(e || null), []);
 
   const handlePaginationChange = useCallback((newPage: number, newPageSize: number) => {
     setPageNumber(newPage);

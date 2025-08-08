@@ -4,3 +4,6 @@ export * from "./Api";
 export * from "./Auth";
 export * from "./User";
 export * from "./Setting";
+export * from "./Product";
+export * from "./Inquiry";
+export * from "./Order";

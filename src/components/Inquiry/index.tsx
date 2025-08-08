@@ -1,48 +1,43 @@
+import { Button, Flex, Image, Modal } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
+import { Trash } from "iconsax-react";
 import { Fragment } from "react";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import Breadcrumbs from "../../coreComponents/Breadcrumbs";
 import CardWrapper from "../../coreComponents/CardWrapper";
-import { UserType } from "../../types";
-import { Button, Flex, Modal, Spin } from "antd";
-import { Edit, Trash } from "iconsax-react";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../constants";
+import { InquiryType } from "../../types";
+import { generateOptions } from "../../utils";
 import useBasicTableFilterHelper from "../../utils/hook/useBasicTableFilterHelper";
 
-const UserContainer = () => {
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper();
+const InquiryContainer = () => {
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper();
 
-  const navigate = useNavigate();
-  const { mutate } = Mutations.useDeleteUser();
-  const { data, isLoading } = Queries.useGetUser(params);
+  const { mutate } = Mutations.useDeleteInquiry();
+  const { data, isLoading } = Queries.useGetInquiry(params);
+  const { data: User } = Queries.useGetUser({});
   const AllUser = data?.data;
 
   const handleDelete = async (id: string) => {
     mutate(id);
   };
 
-  const handleEdit = (item: UserType) => {
-    navigate(ROUTES.USER_Add_Edit, {
-      state: {
-        editData: item,
-        edit: true,
-      },
-    });
-  };
-
-  const columns: ColumnsType<UserType> = [
+  const columns: ColumnsType<InquiryType> = [
     {
       title: "ID",
       key: "index",
       render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1,
     },
     {
+      title: "User Name",
+      dataIndex: "userId",
+      key: "userId",
+      render: (_, record) => (record?.userId?.firstName ? `${record?.userId?.firstName} ${record?.userId?.lastName}` : "-"),
+    },
+    {
       title: "Name",
-      dataIndex: "firstName",
-      key: "firstName",
-      render: (text, record) => `${record.firstName} ${record.lastName}`,
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: "Email",
@@ -51,14 +46,13 @@ const UserContainer = () => {
     },
     {
       title: "Phone",
-      dataIndex: "phoneNumber",
-      key: "phoneNumber",
+      dataIndex: "phone",
+      key: "phone",
     },
     {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-      render: (role) => role.charAt(0).toUpperCase() + role.slice(1),
+      title: "Message",
+      dataIndex: "message",
+      key: "message",
     },
     {
       title: "Option",
@@ -66,9 +60,6 @@ const UserContainer = () => {
       width: 120,
       render: (_, record) => (
         <Flex gap="middle" justify="center">
-          <Button type="text" onClick={() => handleEdit(record)} title="Edit" className="m-1 p-1 btn btn-primary">
-            <Edit className="action" />
-          </Button>
           <Button
             type="text"
             danger
@@ -76,7 +67,7 @@ const UserContainer = () => {
             onClick={() => {
               Modal.confirm({
                 title: "Are you sure?",
-                content: `Do you really want to delete "${record.firstName} ${record.lastName}"?`,
+                content: `Do you really want to delete "${record.name}"?`,
                 okText: "Yes, Delete",
                 cancelText: "Cancel",
                 onOk: () => handleDelete(record?._id),
@@ -93,12 +84,12 @@ const UserContainer = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="User" parent="Pages" />
+      <Breadcrumbs mainTitle="Inquiry" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-xl-10 col-md-9 col-sm-7" btnTitle="Add User" btnClick={() => navigate(ROUTES.USER_Add_Edit)}>
+        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-md-10 col-sm-7" typeFilterData={generateOptions(User?.data?.User_data)} typeFilter={handleSetSortBy}>
           <Table
             className="custom-table"
-            dataSource={AllUser?.User_data}
+            dataSource={AllUser?.inquiry_data}
             columns={columns}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
@@ -117,4 +108,4 @@ const UserContainer = () => {
   );
 };
 
-export default UserContainer;
+export default InquiryContainer;

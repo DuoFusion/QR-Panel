@@ -1721,7 +1721,7 @@
         padding: 8px 16px;
         box-shadow: none !important;
       }
-      &.is-invalid .ant-select-selector{
+      &.is-invalid .ant-select-selector {
         border: 1px dashed #d62131 !important;
       }
     }
@@ -1781,15 +1781,33 @@
       width: 100%;
       border-radius: 4px;
       height: 50px;
-      margin-bottom: 15px;
       &:focus {
         border: 1px dashed #dedbdb !important;
         box-shadow: none !important;
       }
     }
+    .ant-select {
+      display: block;
+      height: auto;
+      box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
+      .ant-select-selector {
+        border: 1px dashed #dedbdb;
+        padding: 9px 16px;
+        box-shadow: none !important;
+        border-radius: 4px;
+        input {
+          box-shadow: none;
+        }
+      }
+      &.is-invalid .ant-select-selector {
+        border: 1px dashed #d62131 !important;
+      }
+    }
+    :where(.css-dev-only-do-not-override-1vjf2v5).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+      border-color: #dedbdb !important;
+    }
   }
 }
-
 .custom-table {
   table {
     thead {

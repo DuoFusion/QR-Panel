@@ -1,6 +1,6 @@
 // ************ Svg's ***********
 
-import type { GetProp, UploadProps } from "antd";
+import type { ColorPickerProps, GetProp, UploadProps } from "antd";
 import { UploadListType } from "antd/es/upload/interface";
 import { FormikHelpers } from "formik";
 import { ReactNode } from "react";
@@ -56,6 +56,13 @@ export interface SelectInputProps {
   [key: string]: any;
 }
 
+export interface ColorPickerInputProps extends Omit<ColorPickerProps, "value" | "onChange"> {
+  label?: string;
+  name: string;
+  required?: boolean;
+  [key: string]: any;
+}
+
 // ************ Breadcrumbs ***********
 
 export interface BreadcrumbsProps {
@@ -84,12 +91,23 @@ export interface CardHeaderProp {
   bodyProps?: React.ComponentProps<typeof CardBody>;
 }
 
-// ************ CardHeaderProp ***********
+// ************ Common Api Data Type ***********
 
 export interface PageState {
   page: number;
   limit: number;
   page_limit: number;
+}
+
+export interface PageStatus {
+  totalData: number;
+  state: PageState;
+}
+
+export interface MessageStatus {
+  status: number;
+  message: string;
+  error: Record<string, any>;
 }
 
 // ************ Upload ***********

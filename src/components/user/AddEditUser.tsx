@@ -7,10 +7,19 @@ import Breadcrumbs from "../../coreComponents/Breadcrumbs";
 import CardWrapper from "../../coreComponents/CardWrapper";
 import { TextInput } from "../../shared/formFields";
 import { UserFormValues, UserPayload } from "../../types";
-import { UserInitialValues } from "../../utils/initialValues";
 import { UserSchema } from "../../utils/validationSchemas";
 import { ROUTES } from "../../constants";
 import { useLocation, useNavigate } from "react-router-dom";
+
+export const UserInitialValues = {
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+  password: "",
+  email: "",
+  link: "",
+  address: "",
+};
 
 const AddEditUser = () => {
   const navigate = useNavigate();
@@ -45,7 +54,7 @@ const AddEditUser = () => {
   };
 
   const initialValues: UserFormValues = state?.edit ? { ...state.editData, password: state.editData.confirmPassword } : { ...UserInitialValues };
-  
+
   return (
     <Fragment>
       <Breadcrumbs mainTitle={`${state?.edit ? "Edit" : "Add"} User`} parent="User" />

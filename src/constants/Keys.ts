@@ -20,6 +20,19 @@ export const KEYS = {
     DELETE_USER_SETTING: "delete-setting",
     EDIT_USER_SETTING: "edit-setting",
   },
-
+  PRODUCT: {
+    ALL_PRODUCT: "product",
+    ADD_PRODUCT: "add-product",
+    DELETE_PRODUCT: "delete-product",
+    EDIT_PRODUCT: "edit-product",
+  },
+  INQUIRY: {
+    ALL_INQUIRY: "inquiry",
+    DELETE_INQUIRY: "delete-inquiry",
+  },
+  ORDER: {
+    ALL_ORDER: "order",
+    DELETE_ORDER: "delete-order",
+  },
   ALL_TEAMS: "all-teams",
 } as const;

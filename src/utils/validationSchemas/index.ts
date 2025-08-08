@@ -60,11 +60,22 @@ export const SettingSchema = Yup.object().shape({
   content: Yup.string().required("Content is required"),
   address: Yup.string().required("Address is required"),
   userId: Yup.string().required("User is required"),
-  qrCode: Yup.string().url("Link must be a valid URL").notRequired(),
+  primary: Yup.string().required("Primary is required"),
+  secondary: Yup.string().required("Secondary is required"),
+  qrCode: Yup.string().notRequired(),
   facebook: Yup.string().notRequired(),
   instagram: Yup.string().notRequired(),
   whatsapp: Yup.string().notRequired(),
   location: Yup.string().notRequired(),
   logoImage: Yup.array().min(1, "Logo is required").required("Logo is required"),
   bannerImage: Yup.array().min(1, "Banner image is required").required("Banner image is required"),
+});
+
+export const ProductSchema = Yup.object().shape({
+  userId: Yup.string().required("User is required"),
+  name: Yup.string().required("Product Name is required"),
+  category: Yup.string().required("Product Category is required"),
+  price: Yup.string().required("Product Price is required"),
+  description: Yup.string().required("Product Description is required"),
+  image: Yup.array().min(1, "Image is required").required("Product Image is required"),
 });
