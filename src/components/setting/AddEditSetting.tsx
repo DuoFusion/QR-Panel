@@ -42,6 +42,7 @@ const AddEditSetting = () => {
     location: initialData?.socialLinks?.location || "",
     primary: initialData?.primary || "",
     secondary: initialData?.secondary || "",
+    backgroundColor: initialData?.backgroundColor || "",
     logoImage: initialData?.logoImage ? [initialData.logoImage] : [],
     bannerImage: initialData?.bannerImage ? [initialData.bannerImage] : [],
   };
@@ -59,6 +60,7 @@ const AddEditSetting = () => {
       ...(values.qrCode && { qrCode: values.qrCode }),
       ...(values.primary && { primary: values.primary }),
       ...(values.secondary && { secondary: values.secondary }),
+      ...(values.backgroundColor && { backgroundColor: values.backgroundColor }),
       socialLinks: {
         ...(values.facebook && { facebook: values.facebook }),
         ...(values.instagram && { instagram: values.instagram }),
@@ -93,7 +95,7 @@ const AddEditSetting = () => {
                       <SelectInput name="userId" label="User" options={generateOptions(data?.data?.User_data)} loading={isLoading} required />
                     </Col>
                     <Col md="6">
-                      <TextInput name="title" label="Title" type="text" placeholder="Enter your Title" required />
+                      <TextInput name="title" label="Web Name" type="text" placeholder="Enter your Web Name" required />
                     </Col>
                     <Col md="6">
                       <TextInput name="email" label="Email Address" type="email" placeholder="Enter your Email Address" required />
@@ -122,11 +124,14 @@ const AddEditSetting = () => {
                     <Col md="6" xl="4">
                       <TextInput name="location" label="Location" type="text" placeholder="Map Link" inputGroupIcon={<Location />} />
                     </Col>
-                    <Col xs="6" md="2">
+                    <Col sm="6" md="3">
                       <ColorPickerInput label="Primary Color" name="primary" required showText />
                     </Col>
-                    <Col xs="6" md="2">
+                    <Col sm="6" md="3">
                       <ColorPickerInput label="Secondary Color" name="secondary" required showText />
+                    </Col>
+                    <Col sm="6" md="6">
+                      <ColorPickerInput label="gradient background Color" name="backgroundColor" mode={"gradient"} required showText allowClear/>
                     </Col>
                     <Col sm="6" md="3">
                       <ImageUpload

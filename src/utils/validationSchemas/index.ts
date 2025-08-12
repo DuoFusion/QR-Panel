@@ -48,11 +48,11 @@ export const UserSchema = Yup.object().shape({
   password: Yup.string()
     .required("Password is required")
     .matches(/[!@#$%^&*()_+={}:;"'<>,.?/-]/, "Password must include at least one special character"),
-  link: Yup.string().url("Link must be a valid URL").required("Link is required"),
+  // link: Yup.string().url("Link must be a valid URL").required("Link is required"),
 });
 
 export const SettingSchema = Yup.object().shape({
-  title: Yup.string().required("title is required"),
+  title: Yup.string().required("Web Name is required"),
   email: Yup.string().email("Invalid email address").required("Email is required"),
   phoneNumber: Yup.string()
     .required("Phone Number is required")
@@ -62,6 +62,7 @@ export const SettingSchema = Yup.object().shape({
   userId: Yup.string().required("User is required"),
   primary: Yup.string().required("Primary is required"),
   secondary: Yup.string().required("Secondary is required"),
+  backgroundColor: Yup.string().required("Background Color is required"),
   qrCode: Yup.string().notRequired(),
   facebook: Yup.string().notRequired(),
   instagram: Yup.string().notRequired(),

@@ -17,6 +17,7 @@ export interface SettingFormValues {
   bannerImage?: string | string[];
   primary?: string;
   secondary?: string;
+  backgroundColor?: string;
 }
 
 export interface SocialLinks {

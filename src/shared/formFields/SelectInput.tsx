@@ -11,6 +11,9 @@ const SelectInput = ({ label, name, required, options, placeholder, ...props }: 
 
   const handleChange = (value: any) => {
     helpers.setValue(value);
+    if (props.onChange) {
+      props.onChange(value);
+    }
   };
 
   return (

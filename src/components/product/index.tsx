@@ -36,15 +36,38 @@ const ProductContainer = () => {
 
   const columns: ColumnsType<ProductType> = [
     {
-      title: "ID",
+      title: "Sr No",
       key: "index",
       render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1,
     },
     {
-      title: "User",
+      title: "User Id",
       dataIndex: "userId",
       key: "userId",
+      render: (_, record) => (record?.userId?._id ? record?.userId?._id : "-"),
+    },
+    {
+      title: "User Name",
+      dataIndex: "user_name",
+      key: "user_name",
       render: (_, record) => (record?.userId?.firstName ? `${record?.userId?.firstName} ${record?.userId?.lastName}` : "-"),
+    },
+    {
+      title: "Wen Id",
+      dataIndex: "web_id",
+      key: "web_id",
+      render: (_, record) => (record?.settingId?._id ? record?.settingId?._id : "-"),
+    },
+    {
+      title: "Wen Name",
+      dataIndex: "user_name",
+      key: "user_name",
+      render: (_, record) => (record?.settingId?.title ? record?.settingId?.title : "-"),
+    },
+    {
+      title: "Product Id",
+      dataIndex: "_id",
+      key: "_id",
     },
     {
       title: "Product Name",
@@ -77,6 +100,7 @@ const ProductContainer = () => {
       title: "Option",
       key: "actionIcons",
       width: 120,
+      fixed: "right",
       render: (_, record) => (
         <Flex gap="middle" justify="center">
           <Button type="text" onClick={() => handleEdit(record)} title="Edit" className="m-1 p-1 btn btn-primary">

@@ -10,12 +10,14 @@ import Breadcrumbs from "../../coreComponents/Breadcrumbs";
 import CardWrapper from "../../coreComponents/CardWrapper";
 import { SettingType } from "../../types";
 import useBasicTableFilterHelper from "../../utils/hook/useBasicTableFilterHelper";
+import { generateOptions } from "../../utils";
 
 const SettingContainer = () => {
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper();
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper();
 
   const navigate = useNavigate();
   const { mutate } = Mutations.useDeleteUserSetting();
+  const { data: User } = Queries.useGetUser({});
   const { data, isLoading } = Queries.useGetUserSetting(params);
   const AllUser = data?.data;
 
@@ -34,15 +36,26 @@ const SettingContainer = () => {
 
   const columns: ColumnsType<SettingType> = [
     {
-      title: "ID",
+      title: "Sr No",
       key: "index",
       render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1,
     },
     {
-      title: "User",
+      title: "User Id",
+      dataIndex: "user_id",
+      key: "user_id",
+      render: (_, record) => (record?.userId?._id ? record?.userId?._id : "-"),
+    },
+    {
+      title: "User Name",
       dataIndex: "userId",
       key: "userId",
-      render: (_, record) => `${record.userId.firstName} ${record.userId.lastName}`,
+      render: (_, record) => (record?.userId?.firstName ? `${record?.userId?.firstName} ${record?.userId?.lastName}` : "-"),
+    },
+    {
+      title: "Web Id",
+      dataIndex: "_id",
+      key: "_id",
     },
     {
       title: "Web Name",
@@ -63,19 +76,19 @@ const SettingContainer = () => {
       title: "Logo",
       dataIndex: "logoImage",
       key: "logoImage",
-      render: (logoImage: string) => (logoImage ? <Image src={logoImage} width={60} height={60} alt="logo" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
+      render: (logoImage: string) => (logoImage ? <Image src={logoImage} width={60} height={60} alt="logo" fallback="/placeholder.png" /> : "-"),
     },
     {
       title: "Banner",
       dataIndex: "bannerImage",
       key: "bannerImage",
-      render: (bannerImage: string) => (bannerImage ? <Image src={bannerImage} width={60} height={60} alt="banner" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
+      render: (bannerImage: string) => (bannerImage ? <Image src={bannerImage} width={60} height={60} alt="banner" fallback="/placeholder.png" /> : "-"),
     },
     {
       title: "QR",
       dataIndex: "qrCode",
       key: "qrCode",
-      render: (qrCode: string) => (qrCode ? <Image src={qrCode} width={60} height={60} alt="qr" fallback="/placeholder.png" /> : <span className="text-muted">No Image</span>),
+      render: (qrCode: string) => (qrCode ? <Image src={qrCode} width={60} height={60} alt="qr" fallback="/placeholder.png" /> : "-"),
     },
     {
       title: "Option",
@@ -112,7 +125,7 @@ const SettingContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Setting" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-xl-10 col-md-9 col-sm-7" btnTitle="Add Setting" btnClick={() => navigate(ROUTES.SETTING_Add_Edit)}>
+        <CardWrapper Search={(e) => handleSetSearch(e)} searchClass="col-md-6 col-xl-8" typeFilterData={generateOptions(User?.data?.User_data)} typeFilter={handleSetSortBy} btnTitle="Add Setting" btnClick={() => navigate(ROUTES.SETTING_Add_Edit)}>
           <Table
             className="custom-table"
             dataSource={AllUser?.setting_data}

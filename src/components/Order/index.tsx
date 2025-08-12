@@ -24,7 +24,7 @@ const OrderContainer = () => {
 
   const columns: ColumnsType<OrderType> = [
     {
-      title: "ID",
+      title: "Sr No",
       key: "index",
       render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1,
     },
@@ -63,11 +63,6 @@ const OrderContainer = () => {
       title: "Price",
       dataIndex: "price",
       key: "price",
-    },
-    {
-      title: "Message",
-      dataIndex: "message",
-      key: "message",
     },
     {
       title: "Option",

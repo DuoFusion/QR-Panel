@@ -17,7 +17,7 @@ export const UserInitialValues = {
   phoneNumber: "",
   password: "",
   email: "",
-  link: "",
+  // link: "",
   address: "",
 };
 
@@ -37,7 +37,7 @@ const AddEditUser = () => {
       ...(values.email && { email: values.email }),
       ...(values.password && { password: values.password }),
       ...(values.password && { confirmPassword: values.password }),
-      ...(values.link && { link: values.link }),
+      // ...(values.link && { link: values.link }),
       ...(values.address && { address: values.address }),
     };
     if (state?.edit) {
@@ -80,9 +80,9 @@ const AddEditUser = () => {
                     <Col md="6" xl="4">
                       <TextInput name="email" label="email address" type="email" placeholder="Enter your Email Address" required />
                     </Col>
-                    <Col md="6" xl="4">
+                    {/* <Col md="6" xl="4">
                       <TextInput name="link" label="Link" type="text" placeholder="Enter your Link" required />
-                    </Col>
+                    </Col> */}
                     <Col sm="12">
                       <TextInput name="address" label="address" type="textarea" placeholder="Enter your Address" required />
                     </Col>

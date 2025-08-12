@@ -24,10 +24,18 @@ const AddEditProduct = () => {
 
   const initialData = state?.editData;
 
+  const [selectedUserId, setSelectedUserId] = useState(initialData?.userId?._id || "");
+  const [selectedSettingId, setSelectedSettingId] = useState(initialData?.settingId || "");
+
+  const { data: setting, isLoading: isSettingUpdating } = Queries.useGetUserSetting({
+    userFilter: selectedUserId || "",
+  });
+
   const [isImage, setImage] = useState<string[]>(initialData?.image ? [initialData.image] : []);
 
   const initialValues: ProductFormValues = {
     userId: initialData?.userId?._id || "",
+    settingId: initialData?.settingId || "",
     name: initialData?.name || "",
     category: initialData?.category || "",
     price: initialData?.price || "",
@@ -38,6 +46,7 @@ const AddEditProduct = () => {
   const handleSubmit = async (values: ProductFormValues, { resetForm }: FormikHelpers<ProductFormValues>) => {
     const payload = {
       ...(values.userId && { userId: values.userId }),
+      ...(values.settingId && { settingId: values.settingId }),
       ...(values.name && { name: values.name }),
       ...(values.category && { category: values.category }),
       ...(values.price && { price: values.price }),
@@ -64,23 +73,49 @@ const AddEditProduct = () => {
         <CardWrapper title={`${state?.edit ? "Edit" : "Add"} Product`}>
           <div className="input-items">
             <Formik<ProductFormValues> initialValues={initialValues} validationSchema={ProductSchema} onSubmit={handleSubmit} enableReinitialize>
-              {({ setFieldValue }) => (
+              {({ setFieldValue, values }) => (
                 <Form>
                   <Row className="gy-3">
                     <Col md="6">
-                      <SelectInput name="userId" label="User" options={generateOptions(data?.data?.User_data)} loading={isLoading} required />
+                      <SelectInput
+                        name="userId"
+                        label="User"
+                        options={generateOptions(data?.data?.User_data)}
+                        loading={isLoading}
+                        onChange={(value: string) => {
+                          setSelectedUserId(value);
+                          setSelectedSettingId("");
+                          setFieldValue("settingId", "");
+                          setFieldValue("userId", value);
+                        }}
+                        required
+                      />
+                    </Col>
+                    <Col md="6">
+                      <SelectInput
+                        name="settingId"
+                        label="Website"
+                        options={generateOptions(setting?.data?.setting_data)}
+                        loading={isSettingUpdating}
+                        disabled={!values?.userId}
+                        onChange={(value: string) => {
+                          setSelectedSettingId(value);
+                          setFieldValue("settingId", value);
+                        }}
+                        required
+                      />
                     </Col>
                     <Col md="6">
                       <TextInput name="name" label="Name" type="text" placeholder="Enter your Product Name" required />
                     </Col>
                     <Col md="6">
-                      <TextInput name="category" label="category" type="text" placeholder="Enter your Product category" required />
+                      <TextInput name="category" label="Category" type="text" placeholder="Enter your Product Category" required />
                     </Col>
                     <Col md="6">
                       <TextInput name="price" label="Price" type="number" placeholder="Enter your Product Price" required />
                     </Col>
                     <Col md="12">
-                      <TextInput name="description" label="description" type="textarea" placeholder="Enter your Product Description" required />
+                      <TextInput name="description" label="Description" type="textarea" placeholder="Enter your Product Description" required />
                     </Col>
                     <Col md="3">
                       <ImageUpload

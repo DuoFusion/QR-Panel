@@ -24,7 +24,7 @@ const InquiryContainer = () => {
 
   const columns: ColumnsType<InquiryType> = [
     {
-      title: "ID",
+      title: "Sr No",
       key: "index",
       render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1,
     },
