@@ -17,6 +17,7 @@ import ProductContainer from "../components/product";
 import AddEditProduct from "../components/product/AddEditProduct";
 import InquiryContainer from "../components/Inquiry";
 import OrderContainer from "../components/Order";
+import Error from "../components/error";
 
 export const Router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ export const Router = createBrowserRouter([
       {
         element: <Layout />,
         children: [
-          { path: ROUTES.HOME, element: <Dashboard /> },
+          { path: ROUTES.DASHBOARD, element: <Dashboard /> },
           { path: ROUTES.CHANGE_PASSWORD, element: <ChangePasswordContainer /> },
           { path: ROUTES.USER, element: <UserContainer /> },
           { path: ROUTES.USER_Add_Edit, element: <AddEditUser /> },
@@ -50,6 +51,6 @@ export const Router = createBrowserRouter([
   },
   {
     path: "*",
-    // element: <ErrorPage />,
+    element: <Error />,
   },
 ]);
