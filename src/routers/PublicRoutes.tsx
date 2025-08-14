@@ -4,7 +4,7 @@ import { useAppSelector } from "../store/hooks";
 
 export const PublicRoutes = () => {
   const { isAuthenticated } = useAppSelector((store) => store.auth);
-  return isAuthenticated ? <Navigate to={ROUTES.HOME} replace /> : <Outlet />;
+  return isAuthenticated ? <Navigate to={ROUTES.DASHBOARD} replace /> : <Outlet />;
 };
 
 export default PublicRoutes;
