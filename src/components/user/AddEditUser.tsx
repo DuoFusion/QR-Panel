@@ -41,8 +41,7 @@ const AddEditUser = () => {
       ...(values.address && { address: values.address }),
     };
     if (state?.edit) {
-      upEditUser({ userId: state?.editData?._id, ...payload });
-      navigate(ROUTES.USER);
+      upEditUser({ userId: state?.editData?._id, ...payload }, { onSuccess: () => navigate(ROUTES.USER) });
     } else {
       useUser(payload, {
         onSuccess: () => {
