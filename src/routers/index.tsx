@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import ChangePasswordContainer from "../auth/changePassword";
 import ForgotPasswordContainer from "../auth/forgotPassword";
 import LoginContainer from "../auth/login";
@@ -43,6 +43,7 @@ export const Router = createBrowserRouter([
   {
     element: <PublicRoutes />,
     children: [
+      { path: ROUTES.HOME, element: <Navigate to={ROUTES.LOGIN} replace /> },
       { path: ROUTES.LOGIN, element: <LoginContainer /> },
       { path: ROUTES.FORGOT_PASSWORD, element: <ForgotPasswordContainer /> },
       { path: ROUTES.VERIFY_OTP, element: <VerifyOtpContainer /> },
