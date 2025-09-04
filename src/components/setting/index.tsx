@@ -2,7 +2,7 @@ import { Button, Flex, Image, Modal } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
@@ -63,9 +63,17 @@ const SettingContainer = () => {
       key: "title",
     },
     {
-      title: "Web URL Name",
+      title: "Web URL",
       dataIndex: "weburl",
       key: "weburl",
+      render: (weburl: string) =>
+        weburl ? (
+          <a href={`https://qr.hkdigiverse.com/${weburl}`} target="_blank" rel="noopener noreferrer" className="text-primary">
+            {weburl}
+          </a>
+        ) : (
+          "-"
+        ),
     },
     {
       title: "Email",
