@@ -31,6 +31,7 @@ const AddEditSetting = () => {
   const initialValues: SettingFormValues = {
     userId: initialData?.userId?._id || "",
     title: initialData?.title || "",
+    weburl: initialData?.weburl || "",
     email: initialData?.email || "",
     phoneNumber: initialData?.phoneNumber || "",
     content: initialData?.content || "",
@@ -50,6 +51,7 @@ const AddEditSetting = () => {
   const handleSubmit = async (values: SettingFormValues, { resetForm }: FormikHelpers<SettingFormValues>) => {
     const payload = {
       ...(values.title && { title: values.title }),
+      ...(values.weburl && { weburl: values.weburl }),
       ...(values.email && { email: values.email }),
       ...(values.phoneNumber && { phoneNumber: values.phoneNumber }),
       ...(values.content && { content: values.content }),
@@ -98,6 +100,9 @@ const AddEditSetting = () => {
                       <TextInput name="title" label="Web Name" type="text" placeholder="Enter your Web Name" required />
                     </Col>
                     <Col md="6">
+                      <TextInput name="weburl" label="Web URL Name" type="text" placeholder="Enter your Web URl" required />
+                    </Col>
+                    <Col md="6">
                       <TextInput name="email" label="Email Address" type="email" placeholder="Enter your Email Address" required />
                     </Col>
                     <Col md="6">
@@ -115,13 +120,13 @@ const AddEditSetting = () => {
                     <Col md="6">
                       <TextInput name="facebook" label="Facebook" type="text" placeholder="Facebook Link" inputGroupIcon={<Facebook />} />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="instagram" label="Instagram" type="text" placeholder="Instagram Link" inputGroupIcon={<Instagram />} />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="whatsapp" label="Whatsapp" type="text" placeholder="Whatsapp Link" inputGroupIcon={<Whatsapp />} />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="location" label="Location" type="text" placeholder="Map Link" inputGroupIcon={<Location />} />
                     </Col>
                     <Col sm="6" md="3">
@@ -131,7 +136,7 @@ const AddEditSetting = () => {
                       <ColorPickerInput label="Secondary Color" name="secondary" required showText />
                     </Col>
                     <Col sm="6" md="6">
-                      <ColorPickerInput label="gradient background Color" name="backgroundColor" mode={"gradient"} required showText allowClear/>
+                      <ColorPickerInput label="gradient background Color" name="backgroundColor" mode={"gradient"} required showText allowClear />
                     </Col>
                     <Col sm="6" md="3">
                       <ImageUpload

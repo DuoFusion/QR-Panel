@@ -3,6 +3,7 @@ import { UserType } from "./User";
 
 export interface SettingFormValues {
   title?: string;
+  weburl?: string;
   email?: string;
   phoneNumber?: string;
   content?: string;

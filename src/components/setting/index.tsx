@@ -63,6 +63,11 @@ const SettingContainer = () => {
       key: "title",
     },
     {
+      title: "Web URL Name",
+      dataIndex: "weburl",
+      key: "weburl",
+    },
+    {
       title: "Email",
       dataIndex: "email",
       key: "email",

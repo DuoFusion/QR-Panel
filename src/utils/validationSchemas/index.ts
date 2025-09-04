@@ -53,6 +53,10 @@ export const UserSchema = Yup.object().shape({
 
 export const SettingSchema = Yup.object().shape({
   title: Yup.string().required("Web Name is required"),
+weburl: Yup.string()
+  .required("Web URL is required")
+  .matches(/^\S*$/, "Spaces are not allowed. Use '-' instead of spaces.")
+  .matches(/^[a-z0-9:./?&=_-]+$/, "Capital letters are not allowed. Use only lowercase."),
   email: Yup.string().email("Invalid email address").required("Email is required"),
   phoneNumber: Yup.string()
     .required("Phone Number is required")

@@ -35,7 +35,7 @@ const AddEditProduct = () => {
 
   const initialValues: ProductFormValues = {
     userId: initialData?.userId?._id || "",
-    settingId: initialData?.settingId || "",
+    settingId: initialData?.settingId?._id || "",
     name: initialData?.name || "",
     category: initialData?.category || "",
     price: initialData?.price || "",
